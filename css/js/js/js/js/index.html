@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Hub - Mobil Listrik Indonesia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigasi -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ EV Hub</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="katalog.html">Katalog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Masa Depan Berkendara Dimulai Sekarang</h1>
+            <p>Temukan mobil listrik impian Anda. Ramah lingkungan, hemat biaya, dan teknologi terkini.</p>
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=700&h=400&fit=crop" 
+                 alt="Mobil Listrik Modern" 
+                 class="hero-image">
+            <a href="#booking" class="btn">Booking Test Drive</a>
+        </div>
+    </section>
+
+    <!-- Mobil Unggulan -->
+    <section class="section">
+        <h2 class="section-title">Mobil Unggulan</h2>
+        <p class="section-subtitle">Pilihan terbaik untuk memulai perjalanan listrik Anda</p>
+        
+        <div class="featured-grid" id="featured-grid">
+            <!-- Diisi oleh JavaScript -->
+        </div>
+        
+        <div style="text-align:center;">
+            <a href="katalog.html" class="btn btn-outline">Lihat Semua Mobil</a>
+        </div>
+    </section>
+
+    <!-- Keunggulan EV -->
+    <section class="section" style="background:#F9FBE7; max-width:100%; padding: 3rem 1.5rem;">
+        <div style="max-width:1200px; margin:0 auto;">
+            <h2 class="section-title">Mengapa Memilih Mobil Listrik?</h2>
+            <p class="section-subtitle">Keunggulan yang membuat perbedaan</p>
+            
+            <div class="advantages">
+                <div class="advantage-card">
+                    <div class="advantage-icon">💰</div>
+                    <h3>Hemat Biaya</h3>
+                    <p>Biaya operasional jauh lebih rendah dibanding mobil konvensional. Tanpa bensin, tanpa oli mesin.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🌱</div>
+                    <h3>Ramah Lingkungan</h3>
+                    <p>Nol emisi gas buang. Berkontribusi langsung mengurangi polusi udara di kota Anda.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">⚡</div>
+                    <h3>Performa Instan</h3>
+                    <p>Torsi maksimal sejak pedal diinjak. Akselerasi responsif dan pengalaman berkendara yang halus.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🔧</div>
+                    <h3>Perawatan Mudah</h3>
+                    <p>Komponen lebih sedikit, perawatan lebih sederhana. Lebih jarang ke bengkel, lebih banyak di jalan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Booking -->
+    <section class="section" id="booking">
+        <h2 class="section-title">Booking Test Drive</h2>
+        <p class="section-subtitle">Isi form di bawah untuk mencoba langsung mobil listrik pilihan Anda</p>
+        
+        <div class="form-section">
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+                    <span class="error" id="nama-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="contoh@email.com">
+                    <span class="error" id="email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model Pilihan</label>
+                    <select id="model">
+                        <option value="">-- Pilih Model --</option>
+                    </select>
+                    <span class="error" id="model-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal">Tanggal Test Drive</label>
+                    <input type="date" id="tanggal">
+                    <span class="error" id="tanggal-error"></span>
+                </div>
+                <button type="submit" class="btn" style="width:100%;">Kirim Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 EV Hub Indonesia. Semua hak dilindungi.</p>
+        <p style="margin-top:0.5rem;opacity:0.8;">Mendorong Indonesia menuju transportasi berkelanjutan.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Render mobil unggulan di beranda
+        document.addEventListener('DOMContentLoaded', () => {
+            const featuredGrid = document.getElementById('featured-grid');
+            const featuredMobil = mobilListrik.filter(m => m.featured);
+            
+            featuredMobil.forEach(mobil => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${mobil.gambar[0]}" alt="${mobil.nama}" class="card-img">
+                    <div class="card-body">
+                        <h3>${mobil.nama}</h3>
+                        <p class="price">${formatRupiah(mobil.harga)}</p>
+                        <p class="range">⚡ ${mobil.jarakTempuh} km</p>
+                        <a href="detail.html?id=${mobil.id}" class="btn">
